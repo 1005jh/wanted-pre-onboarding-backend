@@ -30,15 +30,10 @@ if (process.env.LOCAL === "true") {
     key: fs.readFileSync("../.cert/key.pem", "utf-8"),
     cert: fs.readFileSync("../.cert/cert.pem", "utf-8"),
   };
-
-  server = HTTPS.createServer(options, app);
-  server.listen(3002, () => {
-    console.log("HTTPS server open :: " + 3002);
-  });
-} else {
-  app.listen(3002, () => {
-    console.log("server open :: " + 3002);
-  });
 }
+server = HTTPS.createServer(options, app);
+server.listen(3000, () => {
+  console.log("server open :: " + 3000);
+});
 
 module.exports = server;

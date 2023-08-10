@@ -5,3 +5,5 @@ loadtest.json
 package-lock.json
 data.csv
 .cert
+data
+app
