@@ -1,0 +1,7 @@
+.env
+node_modules
+logs
+loadtest.json
+package-lock.json
+data.csv
+.cert
