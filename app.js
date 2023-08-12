@@ -22,7 +22,12 @@ app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
 app.use(expressSanitizer());
 app.use(cookieParser());
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
+
 app.use("/", routes);
+
 let server;
 let options = {};
 if (process.env.LOCAL === "true") {
