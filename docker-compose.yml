@@ -25,6 +25,7 @@ services:
 
   app:
     # Dockerfile 위치
+    image: ${ECR_REGISTRY_URL}/wanted_server_prac:latest
     build:
       dockerfile: Dockerfile
     # 애플리케이션 포트 매핑
