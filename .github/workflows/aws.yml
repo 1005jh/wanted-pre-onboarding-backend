@@ -8,6 +8,9 @@ jobs:
   deploy:
     name: CD Pipeline
     runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        node-version: [18.17.1]
 
     steps:
       - uses: actions/checkout@v3
@@ -60,10 +63,10 @@ jobs:
       - name: Copy Docker Compose file to EC2
         run: |
           chmod 400 private-key.pem
-          scp -i private-key.pem -o StrictHostKeyChecking=no ./docker-compose.yml ubuntu@43.201.98.6:/home/ubuntu/
-          scp -i private-key.pem -o StrictHostKeyChecking=no ./.env ubuntu@43.201.98.6:/home/ubuntu/
+          scp -i private-key.pem -o StrictHostKeyChecking=no ./docker-compose.yml ubuntu@3.38.106.221:/home/ubuntu/
+          scp -i private-key.pem -o StrictHostKeyChecking=no ./.env ubuntu@3.38.106.221:/home/ubuntu/
 
       - name: SSH into EC2 and deploy
         run: |
           chmod 400 private-key.pem
-          ssh -i private-key.pem -o StrictHostKeyChecking=no ubuntu@43.201.98.6 'cd /home/ubuntu/ && sudo docker-compose down && sudo docker-compose pull && sudo docker-compose up -d'
+          ssh -i private-key.pem -o StrictHostKeyChecking=no ubuntu@3.38.106.221 'cd /home/ubuntu/ && sudo docker-compose down && sudo docker-compose pull && sudo docker-compose up -d'
