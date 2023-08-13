@@ -45,8 +45,8 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
-          docker build --no-cache -t $ECR_REGISTRY/wanted_server_prac:latest .
-          docker push $ECR_REGISTRY/wanted_server_prac:latest
+          docker build --no-cache -t $ECR_REGISTRY/wanted:latest .
+          docker push $ECR_REGISTRY/wanted:latest
 
       - name: Install Docker Compose
         run: |
