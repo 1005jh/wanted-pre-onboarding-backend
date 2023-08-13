@@ -22,11 +22,10 @@ app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
 app.use(expressSanitizer());
 app.use(cookieParser());
+app.use("/", routes);
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
-
-app.use("/", routes);
 
 let server;
 let options = {};
@@ -35,10 +34,14 @@ if (process.env.LOCAL === "true") {
     key: fs.readFileSync("../.cert/key.pem", "utf-8"),
     cert: fs.readFileSync("../.cert/cert.pem", "utf-8"),
   };
-}
-server = HTTPS.createServer(options, app);
-server.listen(3000, () => {
-  console.log("server open :: " + 3000);
-});
+  server = HTTPS.createServer(options, app);
+  console.log("서버");
+  return server.listen(3000, () => {
+    console.log("server open :: " + 3000);
+  });
+} else
+  app.listen(3000, () => {
+    console.log("app open :: " + 3000);
+  });
 
 module.exports = server;
