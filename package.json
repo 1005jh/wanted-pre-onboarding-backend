@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "cert": "rm -rf .cert && mkdir -p .cert && mkcert -key-file ./.cert/key.pem -cert-file ./.cert/cert.pem 'localhost'",
-    "cert1": "powershell -File generate-cert.ps1"
+    "cert:window": "powershell -File generate-cert.ps1"
   },
   "author": "",
   "license": "ISC",
