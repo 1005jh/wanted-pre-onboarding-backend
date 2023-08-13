@@ -26,9 +26,6 @@ services:
   app:
     # Dockerfile 위치
     image: ${ECR_REGISTRY_URL}/wanted:latest
-    build:
-      context: .
-      dockerfile: Dockerfile
     # 애플리케이션 포트 매핑
     ports:
       - "80:3000"
