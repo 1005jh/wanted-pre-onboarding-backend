@@ -1,5 +1,4 @@
 name: project-cicd
-
 on:
   push:
     branches: ['main']
