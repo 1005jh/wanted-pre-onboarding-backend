@@ -27,6 +27,7 @@ services:
     # Dockerfile 위치
     image: ${ECR_REGISTRY_URL}/wanted:latest
     build:
+      context: ./path/to/dir
       dockerfile: Dockerfile
     # 애플리케이션 포트 매핑
     ports:
