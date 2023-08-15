@@ -46,7 +46,7 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
           aws ecr get-login-password \
-              --region ${{ secrets.AWS_REGION }} \
+              --region ${{ secrets.AWS_REGION }} --profile=staging\
           | docker login \
               --username AWS \
               --password-stdin ${{ secrets.ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/wanted
