@@ -28,7 +28,7 @@ class PostService {
   detail = async ({ postId }) => {
     const getDetailData = await this.postRepository.detail({ postId });
     if (getDetailData.deleteStatus === "ISDELETE") {
-      throw new CustomError(400, "삭제된 게시물입니다.");
+      throw new Error("삭제된 게시물입니다.");
     }
 
     return {
@@ -43,7 +43,7 @@ class PostService {
       updatePostData.postId,
     );
     if (updatePostData.userId !== isUserPost.userId) {
-      throw new CustomError(400, "게시글 수정 권한이 없습니다.");
+      throw new Error("게시글 수정 권한이 없습니다.");
     }
     // 2. 데이터 저장
     const updatePost = await this.postRepository.update(updatePostData);
@@ -60,10 +60,10 @@ class PostService {
       deletePostData.postId,
     );
     if (deletePostData.userId !== isUserPost.userId) {
-      throw new CustomError(400, "삭제 권한이 없습니다.");
+      throw new Error("삭제 권한이 없습니다.");
     } else if (isUserPost.deleteStatus === "ISDELETE") {
       // 2. deleteStatus = 'ISDELETE' 여부 확인
-      throw new CustomError(400, "이미 삭제된 게시글입니다.");
+      throw new Error("이미 삭제된 게시글입니다.");
     }
     // 3. deleteStatus = 'ISDELETE' 업데이트
     const deletePost = await this.postRepository.delete(deletePostData);

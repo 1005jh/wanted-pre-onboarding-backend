@@ -4,7 +4,9 @@ const bcrypt = require("bcrypt");
 const Joi = require("../utils/joi");
 
 class UserController {
-  userService = new UserService();
+  constructor() {
+    this.userService = new UserService();
+  }
 
   signup = async (req, res, next) => {
     try {
@@ -12,9 +14,9 @@ class UserController {
       await Joi.signupSchema.validateAsync(req.body);
 
       if (!email || !nickname || !password) {
-        throw new CustomError(400, "모든 항목을 기입해주세요.");
+        throw new Error(400, "모든 항목을 기입해주세요.");
       } else if (nickname.includes(password) || password.includes(nickname)) {
-        throw new CustomError(400, "닉네임과 비밀번호는 다르게 설정해주세요.");
+        throw new Error(400, "닉네임과 비밀번호는 다르게 설정해주세요.");
       }
       const users = {
         email: email,
@@ -36,7 +38,7 @@ class UserController {
       await Joi.loginSchema.validateAsync(req.body);
 
       if (!email || !password) {
-        throw new CustomError(400, "모든 항목을 기입해주세요");
+        throw new Error(400, "모든 항목을 기입해주세요");
       }
       const userData = {
         email: email,

@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_ENV=test jest",
+    "all:migrate": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate",
+    "prod:all:migrate": "NODE_ENV=production npx sequelize db:migrate:undo:all &&NODE_ENV=production npx sequelize db:migrate",
     "start": "node app.js",
     "cert": "rm -rf .cert && mkdir -p .cert && mkcert -key-file ./.cert/key.pem -cert-file ./.cert/cert.pem 'localhost'",
     "cert:window": "powershell -File generate-cert.ps1"
@@ -30,5 +32,9 @@
     "sequelize-cli": "^6.6.1",
     "winston": "^3.10.0",
     "winston-daily-rotate-file": "^4.7.1"
+  },
+  "devDependencies": {
+    "jest": "^29.6.2",
+    "supertest": "^6.3.3"
   }
 }

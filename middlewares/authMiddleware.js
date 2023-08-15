@@ -1,26 +1,25 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const { User } = require("../models");
-const CustomError = require("../exception/exeption");
 
 module.exports = (req, res, next) => {
   let accessToken = req.cookies["accessToken"];
-  let isTokenFromHeader = true;
+  let isTokenFromHeader = false;
 
   if (!accessToken) {
     const { authorization } = req.headers;
     if (!authorization) {
-      throw new CustomError(401, "로그인 후 이용 가능합니다.");
+      throw new Error("로그인 후 이용 가능합니다.");
     }
     const [authType, authToken] = (authorization || "").split(" ");
     if (authType !== "Bearer" || !authToken) {
-      throw new CustomError(401, "로그인 후 이용 가능합니다.");
+      throw new Error("로그인 후 이용 가능합니다.");
     }
     accessToken = authToken;
-    isTokenFromHeader = false;
+    isTokenFromHeader = true;
   }
   if (!accessToken) {
-    throw new CustomError(401, "로그인 후 이용 가능합니다.");
+    throw new Error("로그인 후 이용 가능합니다.");
   }
 
   try {
@@ -30,6 +29,6 @@ module.exports = (req, res, next) => {
       next();
     });
   } catch (err) {
-    throw new CustomError(401, "로그인 후 이용 가능합니다.");
+    throw new Error("로그인 후 이용 가능합니다.");
   }
 };

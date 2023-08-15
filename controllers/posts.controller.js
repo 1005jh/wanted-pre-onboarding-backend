@@ -8,7 +8,7 @@ class PostController {
     try {
       const { title, content } = req.body;
       if (!title || !content) {
-        throw new CustomError(400, "needed title,content");
+        throw new Error("needed title,content");
       }
       const { userId } = res.locals.user;
       const postData = {
@@ -29,7 +29,7 @@ class PostController {
     try {
       const { page } = req.query;
       if (!page) {
-        throw new CustomError(400, "needed page query");
+        throw new Error("needed page query");
       }
       const getAllList = await this.postService.list({ page });
 
@@ -44,7 +44,7 @@ class PostController {
     try {
       const { postId } = req.params;
       if (!postId) {
-        throw new CustomError(400, "needed params");
+        throw new Error("needed params");
       }
       const getDetailData = await this.postService.detail({ postId });
 
@@ -81,7 +81,7 @@ class PostController {
       const { postId } = req.params;
       const { userId } = res.locals.user;
       if (!postId) {
-        throw new CustomError(400, "needed params");
+        throw new Error("needed params");
       }
       const deletePostData = {
         postId: postId,

@@ -29,8 +29,8 @@ app.get("/", (req, res) => {
 });
 
 app.use((err, req, res, next) => {
-  if (err instanceof CustomError) {
-    res.status(err.status).json(err.errorResponse);
+  if (err) {
+    res.status(err.status).json(err.message);
   } else {
     res.status(500).send("Internal Server Error");
   }

@@ -1,5 +1,4 @@
 require("dotenv").config();
-const CustomError = require("../exception/exeption");
 
 module.exports = (req, res, next) => {
   try {
@@ -8,7 +7,7 @@ module.exports = (req, res, next) => {
 
     const [authType, authToken] = (authorization || "").split(" ");
     if (authType === "Bearer" || authToken) {
-      throw new CustomError(403, "이미 로그인이 되어있습니다.");
+      throw new Error(403, "이미 로그인이 되어있습니다.");
     }
 
     if (accessToken) {
@@ -19,7 +18,7 @@ module.exports = (req, res, next) => {
 
     next();
   } catch (error) {
-    console.trace(error);
+    console.log(error);
     return res.status(400).send({
       errorMessage: "잘못된 접근입니다.",
     });
