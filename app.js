@@ -11,6 +11,7 @@ const morgan = require("morgan");
 const fs = require("fs");
 const http = require("http");
 const HTTPS = require("https");
+const CustomError = require("./exception/exeption");
 
 const cors = require("cors");
 const routes = require("./routes");
@@ -25,6 +26,14 @@ app.use(cookieParser());
 app.use("/", routes);
 app.get("/", (req, res) => {
   res.send("Hello World");
+});
+
+app.use((err, req, res, next) => {
+  if (err instanceof CustomError) {
+    res.status(err.status).json(err.errorResponse);
+  } else {
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 let server;

@@ -25,19 +25,15 @@ module.exports = (sequelize, DataTypes) => {
       },
       email: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       nickname: {
         type: DataTypes.STRING,
-        allowNull: true,
-      },
-      refreshToken: {
-        type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
       },
     },
     {

@@ -40,6 +40,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
+      deleteStatus: {
+        type: DataTypes.ENUM("ISDELETE", "ISNOTDELETE"),
+        defaultValue: "ISNOTDELETE",
+      },
     },
     {
       sequelize,

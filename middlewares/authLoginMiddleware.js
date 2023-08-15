@@ -1,9 +1,17 @@
 require("dotenv").config();
+const CustomError = require("../exception/exeption");
+
 module.exports = (req, res, next) => {
   try {
-    const { accessToken, refreshToken } = req.cookies;
+    const { accessToken } = req.cookies;
+    const { authorization } = req.headers;
 
-    if (accessToken || refreshToken) {
+    const [authType, authToken] = (authorization || "").split(" ");
+    if (authType === "Bearer" || authToken) {
+      throw new CustomError(403, "이미 로그인이 되어있습니다.");
+    }
+
+    if (accessToken) {
       return res.status(403).send({
         errorMessage: "이미 로그인이 되어있습니다.",
       });
