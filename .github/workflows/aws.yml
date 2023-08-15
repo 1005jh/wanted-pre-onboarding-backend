@@ -49,7 +49,7 @@ jobs:
               --region ${{ secrets.AWS_REGION }} --profile=staging\
           | docker login \
               --username AWS \
-              --password-stdin ${{ secrets.ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/wanted
+              --password-stdin ${{ secrets.ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
           docker build --no-cache -t $ECR_REGISTRY/wanted:latest .
           docker push $ECR_REGISTRY/wanted:latest
 
