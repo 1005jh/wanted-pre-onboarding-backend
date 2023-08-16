@@ -40,12 +40,12 @@ let server;
 let options = {};
 if (process.env.LOCAL === "true") {
   options["httpsOptions"] = {
-    key: fs.readFileSync("../.cert/key.pem", "utf-8"),
-    cert: fs.readFileSync("../.cert/cert.pem", "utf-8"),
+    key: fs.readFileSync(".cert/key.pem", "utf-8"),
+    cert: fs.readFileSync(".cert/cert.pem", "utf-8"),
   };
   server = HTTPS.createServer(options, app);
   console.log("서버");
-  return server.listen(3000, () => {
+  server.listen(3000, () => {
     console.log("server open :: " + 3000);
   });
 } else
