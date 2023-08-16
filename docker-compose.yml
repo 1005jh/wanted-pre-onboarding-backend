@@ -13,8 +13,9 @@ services:
     ports:
       - "3306:3306"
     # 환경 변수 설정
-    env_file:
-      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      TZ: Asia/Seoul
     # 명렬어 설정
     command:
       - --character-set-server=utf8
