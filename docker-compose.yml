@@ -14,7 +14,7 @@ services:
       - "3306:3306"
     # 환경 변수 설정
     environment:
-      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       TZ: Asia/Seoul
     # 명렬어 설정
     command:
