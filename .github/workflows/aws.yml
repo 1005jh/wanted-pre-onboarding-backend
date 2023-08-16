@@ -45,7 +45,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
-          aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin ${{secrets.ACCOUNT_ID}}.dkr.ecr.ap-northeast-2.amazonaws.com
+          aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 502834912090.dkr.ecr.ap-northeast-2.amazonaws.com
           docker build --no-cache -t $ECR_REGISTRY/wanted:latest .
           docker push $ECR_REGISTRY/wanted:latest
 
