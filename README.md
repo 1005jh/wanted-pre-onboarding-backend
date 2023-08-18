@@ -102,4 +102,4 @@ https://www.notion.so/5a8a7d9070c44ac4a932ca1ff2daeb1e?pvs=4
 [API 명세서](%E1%84%86%E1%85%A7%E1%86%BC%E1%84%89%E1%85%A6%205a8a7d9070c44ac4a932ca1ff2daeb1e/API%20%E1%84%86%E1%85%A7%E1%86%BC%E1%84%89%E1%85%A6%E1%84%89%E1%85%A5%20a0c163ec6f014c02a146bc0b3637fe0c.csv)
 
 ### 7. 배포주소
-rlawjdgus.shop
+https://rlawjdgus.shop
